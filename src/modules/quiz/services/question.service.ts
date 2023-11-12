@@ -18,6 +18,7 @@ export class QuestionService {
   ): Promise<Question> {
     const createdQuiz = new this.questionModel({
       question: question.question,
+      quizId: question.quizId
     });
     const newQuestion = await createdQuiz.save();
 
@@ -25,5 +26,12 @@ export class QuestionService {
     await quiz.save();
 
     return newQuestion;
+  }
+
+  async getQuestionById(questionId: number): Promise<Question> {
+    return this.questionModel
+    .findById(questionId)
+    .populate('quizId') // Populate the 'quizId' field
+    .exec();
   }
 }

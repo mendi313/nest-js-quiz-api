@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import { Document } from 'mongoose';
+import { Option } from './option.interface';
 
 export interface Question extends Document {
-  readonly question: string;
+  options: Option[]
+  readonly quizId: number;
 }

@@ -3,8 +3,10 @@ import {
   Body,
   Controller,
   Post,
+  Get,
   UsePipes,
   ValidationPipe,
+  Param,
 } from '@nestjs/common';
 import { QuestionService } from '../services/question.service';
 import { ApiCreatedResponse } from '@nestjs/swagger';
@@ -19,13 +21,18 @@ export class QuestionController {
     private readonly quizService: QuizService,
   ) {}
 
-  @Post('')
+  @Get('/:id')
+  getQuizById(@Param('id') id: number): Promise<Question> {
+    return this.questionService.getQuestionById(id);
+  }
+
+  @Post()
   @UsePipes(ValidationPipe)
   @ApiCreatedResponse({
     description: 'Question added to a quiz',
   })
   async saveQuestion(@Body() question: CreateQuestionDto): Promise<Question> {
     const quiz = await this.quizService.getQuizById(question.quizId);
-    return await this.questionService.createQuestion(question, quiz);
+    return this.questionService.createQuestion(question, quiz);
   }
 }
