@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
-import { Question } from '../../interfaces/question.interface';
+import { Question } from '../../../interfaces/question.interface';
 import { CreateQuestionDto } from 'src/dto/CreateQuestionDto.dto';
 import { Quiz } from 'src/interfaces/quiz.interface';
 

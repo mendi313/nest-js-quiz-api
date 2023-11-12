@@ -6,9 +6,11 @@ import {
   Get,
   Post,
   ValidationPipe,
-  UseGuards
+  UseGuards,
+  Param,
+  ParseIntPipe,
 } from '@nestjs/common';
-import { QuizService } from './quiz.service';
+import { QuizService } from '../services/quiz.service';
 import { CreateQuizDto } from 'src/dto/CreateQuizDto.dto';
 import {
   ApiCreatedResponse,
@@ -27,10 +29,15 @@ export class QuizController {
     return this.quizService.findAllQuizzes();
   }
 
+  @Get('/:id')
+  async getQuizById(@Param('id') id: number): Promise<Quiz> {
+    return await this.quizService.getQuizById(id);
+  }
+
   @ApiCreatedResponse({ description: 'The quiz that got created' })
   @Post()
   @UsePipes(ValidationPipe)
-  async createQuiz(@Body() quizData: CreateQuizDto): Promise<Quiz> { 
+  async createQuiz(@Body() quizData: CreateQuizDto): Promise<Quiz> {
     return await this.quizService.createNewQuiz(quizData);
   }
 }
