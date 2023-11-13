@@ -11,7 +11,7 @@ export class QuizService {
     private quizModel: Model<Quiz>,
   ) {}
 
-  async createNewQuiz(body: CreateQuizDto): Promise<Quiz> {
+  createNewQuiz(body: CreateQuizDto): Promise<Quiz> {
     const createdQuiz = new this.quizModel({
       title: body.title,
       description: body.description,
@@ -19,14 +19,14 @@ export class QuizService {
     return createdQuiz.save();
   }
 
-  async getQuizById(id: number): Promise<Quiz> {
+  getQuizById(id: number): Promise<Quiz> {
     return this.quizModel
       .findById(id)
       .populate('questions') // Populate the 'questions' field
       .exec();
   }
 
-  async findAllQuizzes(): Promise<Quiz[]> {
+  findAllQuizzes(): Promise<Quiz[]> {
     return this.quizModel.find().populate('questions').exec();
   }
 }
