@@ -9,11 +9,12 @@ import {
   Param,
 } from '@nestjs/common';
 import { QuestionService } from '../services/question.service';
-import { ApiCreatedResponse } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
 import { CreateQuestionDto } from 'src/dto/CreateQuestionDto.dto';
 import { Question } from 'src/interfaces/question.interface';
 import { QuizService } from '../services/quiz.service';
 
+@ApiTags('Question')
 @Controller('question')
 export class QuestionController {
   constructor(

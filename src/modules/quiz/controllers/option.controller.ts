@@ -9,8 +9,9 @@ import { OptionService } from '../services/option.service';
 import { QuestionService } from '../services/question.service';
 import { CreateOptionDto } from 'src/dto/CreateOptionDto.dto';
 import { Option } from 'src/interfaces/option.interface';
+import { ApiTags } from '@nestjs/swagger';
 
-/* eslint-disable prettier/prettier */
+@ApiTags('Option')
 @Controller('question/option')
 export class OptionController {
   constructor(

@@ -1,10 +1,11 @@
 import { Controller, Post, UseGuards, Request, Body, Get } from '@nestjs/common';
 import { LocalAuthGuard } from './local-auth.guard';
 import { LoginDto } from 'src/dto/LoginDto';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 
+@ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
