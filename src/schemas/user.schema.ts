@@ -13,6 +13,7 @@ export const UserSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: Object.values(UserRoles),
+    default: UserRoles.MEMBER,
   },
   createdAt: {
     type: Date,
